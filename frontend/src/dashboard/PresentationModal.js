@@ -1,4 +1,23 @@
 import React, { useState } from 'react';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import styled from '@emotion/styled';
+import { Input, Button } from '@mui/material';
+
+export const ModalContent = styled.div``
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 function PresentationModal ({ isOpen, onClose, onCreate }) {
   const [name, setName] = useState('');
@@ -15,21 +34,27 @@ function PresentationModal ({ isOpen, onClose, onCreate }) {
 
   if (!isOpen) return null;
 
-  return (
-    <div className="modal">
-      <div className="modal-content">
-        <h2>create new presentation</h2>
-        <input
-          type="text"
-          placeholder="New presentation"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <button onClick={handleSubmit}>Create</button>
-        <button onClick={onClose}>Close</button>
-      </div>
-    </div>
-  );
+  console.log(handleSubmit);
+
+  return <Modal
+      open={isOpen}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          create new presentation
+        </Typography>
+          <ModalContent id="modal-modal-description">
+            <div style={{ margin: '8px 0' }}>
+              <Input placeholder="New presentation" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+            <Button onClick={onClose}>Close</Button>
+            <Button onClick={handleSubmit}>Create</Button>
+          </ModalContent>
+      </Box>
+  </Modal>
 }
 
 export default PresentationModal;

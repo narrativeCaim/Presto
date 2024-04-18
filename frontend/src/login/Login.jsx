@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { StyledForm, StyledInput, StyledButton, StyledError } from './ui';
 
 function Login () {
   const [email, setEmail] = useState('');
@@ -34,9 +35,9 @@ function Login () {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="email">email:</label>
-        <input
+        <StyledInput
           type="email"
           id="email"
           value={email}
@@ -45,7 +46,7 @@ function Login () {
         />
 
         <label htmlFor="password">password:</label>
-        <input
+        <StyledInput
           type="password"
           id="password"
           value={password}
@@ -53,10 +54,10 @@ function Login () {
           required
         />
 
-        <button type="submit">login</button>
-      </form>
+        <StyledButton type="submit">login</StyledButton>
+      </StyledForm>
 
-      {error && <div className="error">{error}</div>}
+      {error && <StyledError>{error}</StyledError>}
     </div>
   );
 }

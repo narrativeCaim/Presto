@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Container, Title, Form, Input, Button, ErrorMsg } from './ui';
 
 function Register () {
   const [email, setEmail] = useState('');
@@ -38,11 +39,12 @@ function Register () {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Title>Register</Title>
+
         <label htmlFor="name">Name:</label>
-        <input
+        <Input
           type="text"
           id="name"
           value={name}
@@ -51,7 +53,7 @@ function Register () {
         />
 
         <label htmlFor="email">Email:</label>
-        <input
+        <Input
           type="email"
           id="email"
           value={email}
@@ -60,7 +62,7 @@ function Register () {
         />
 
         <label htmlFor="password">Password:</label>
-        <input
+        <Input
           type="password"
           id="password"
           value={password}
@@ -69,7 +71,7 @@ function Register () {
         />
 
         <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input
+        <Input
           type="password"
           id="confirmPassword"
           value={confirmPassword}
@@ -77,10 +79,10 @@ function Register () {
           required
         />
 
-        <button type="submit">Register</button>
-      </form>
-      {error && <div className="error">{error}</div>}
-      </div>
+        <Button type="submit">Register</Button>
+        {error && <ErrorMsg>{error}</ErrorMsg>}
+      </Form>
+    </Container>
   );
 }
 

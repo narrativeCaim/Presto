@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Home.module.css';
+import { PresentationCard, CardTitle, Thumbnail, CardImage } from './ui';
 
-function PresentationCard ({ presentation }) {
+function PresentationCardComponent ({ presentation }) {
   if (!presentation) return null;
 
   const navigate = useNavigate();
@@ -14,13 +14,15 @@ function PresentationCard ({ presentation }) {
   };
 
   return (
-    <div className={styles.presentationCard} onClick={handleCardClick} style={{ cursor: 'pointer' }}>
-      <img src={thumbnailSrc} alt={name} style={{ width: '100%', height: '100%' }} />
-      <h3>{name}</h3>
-      <p>{description || 'No description provided.'}</p>
+    <PresentationCard onClick={handleCardClick}>
+      <CardTitle>{name}</CardTitle>
+      <Thumbnail>
+        <CardImage src={thumbnailSrc} alt={name} />
+      </Thumbnail>
+      <p>{description || ''}</p>
       <p>{slides.length} slides</p>
-    </div>
+    </PresentationCard>
   );
 }
 
-export default PresentationCard;
+export default PresentationCardComponent;

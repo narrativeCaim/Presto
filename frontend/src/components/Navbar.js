@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LogoutButton } from './ui';
 
 function Navbar () {
   const navigate = useNavigate();
@@ -34,8 +35,7 @@ function Navbar () {
 
   return (
         <nav>
-            <button onClick={handleLogout}>Logout</button>
-            {/* 其他导航链接可以放在这里 */}
+            <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
         </nav>
   );
 }
