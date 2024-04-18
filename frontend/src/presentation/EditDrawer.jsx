@@ -7,6 +7,10 @@ import BasicSelect from './Select';
 import Radio from '@mui/material/Radio';
 import Textarea from '@mui/joy/Textarea';
 import { elementTypes } from '../dashboard/contanst';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 export const EditDrawer = (props) => {
   const { visible, onClose, editEle, id, setCurrentPre, currentPre } = props;
@@ -151,7 +155,22 @@ export const EditDrawer = (props) => {
                 }} />
             </FormRow>
             <FormRow>
-                <LabelTitle style={{ width: 60 }}>Autoplay</LabelTitle>
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label">Autoplay</FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  name="radio-buttons-group"
+                  value={state.autoPlay}
+                  onChange={(e) => {
+                    setState({ ...state, autoPlay: e.target.value });
+                  }}
+                >
+                  <FormControlLabel value="true" control={<Radio />} label="True" />
+                  <FormControlLabel value="false" control={<Radio />} label="False" />
+                </RadioGroup>
+              </FormControl>
+            </FormRow>
+                {/* <LabelTitle style={{ width: 60 }}>Autoplay</LabelTitle>
                 <FormRow style={{ margin: 0 }}>
                     <span>True</span>
                     <Radio
@@ -176,7 +195,7 @@ export const EditDrawer = (props) => {
                         inputProps={{ 'aria-label': 'False' }}
                     />
                 </FormRow>
-            </FormRow>
+            </FormRow> */}
         </>
     }
     {

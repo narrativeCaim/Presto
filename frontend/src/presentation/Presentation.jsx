@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { DetailWrapper, SideBarWrapper } from './ui';
+import { ThumbnailTitle, DetailWrapper, SideBarWrapper } from './ui';
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
 import { RevealDemo } from './reveal';
@@ -189,6 +189,7 @@ function Presentation () {
                 setCurrentPre({ ...currentPre, name: e.target.value })
               }}
             />
+            <ThumbnailTitle>Thumbnail</ThumbnailTitle>
             <Thumbnail currentPre={currentPre} setCurrentPre={setCurrentPre} />
           </div>
           <div className='left'>

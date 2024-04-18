@@ -4,6 +4,7 @@ export const DetailWrapper = styled.div`
     position: relative;
     width: calc(100vw - 16px);
     height: calc(100vh - 40px);
+    min-width: 960px;
     display: flex;
 
     .slide-bar-wrapper {
@@ -185,4 +186,12 @@ export const Thumbnail = styled.div`
         height: 100%;
         background-color: #c9cdd4;
     }
+`
+
+export const ThumbnailTitle = styled.div`
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
 `
