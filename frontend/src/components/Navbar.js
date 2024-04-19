@@ -18,16 +18,13 @@ function Navbar () {
         });
 
         if (response.ok) {
-          // 登出成功，清除本地存储的令牌
           localStorage.removeItem('token');
           navigate('/login');
         } else {
-          // 处理错误情况
           const data = await response.json();
           alert(data.error || 'Logout failed');
         }
       } catch (error) {
-        // 网络或其他错误处理
         console.error('Logout error:', error);
       }
     }

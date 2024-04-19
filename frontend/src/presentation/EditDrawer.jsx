@@ -170,32 +170,6 @@ export const EditDrawer = (props) => {
                 </RadioGroup>
               </FormControl>
             </FormRow>
-                {/* <LabelTitle style={{ width: 60 }}>Autoplay</LabelTitle>
-                <FormRow style={{ margin: 0 }}>
-                    <span>True</span>
-                    <Radio
-                        checked={state.autoPlay}
-                        onChange={(e) => {
-                          setState({ ...state, autoPlay: e.target.checked });
-                        }}
-                        value={true}
-                        name="radio-buttons"
-                        inputProps={{ 'aria-label': 'True' }}
-                    />
-                </FormRow>
-                <FormRow style={{ margin: 0 }}>
-                    <span>False</span>
-                    <Radio
-                        checked={!state.autoPlay}
-                        onChange={(e) => {
-                          setState({ ...state, autoPlay: e.target.checked });
-                        }}
-                        value={false}
-                        name="radio-buttons"
-                        inputProps={{ 'aria-label': 'False' }}
-                    />
-                </FormRow>
-            </FormRow> */}
         </>
     }
     {
@@ -212,16 +186,6 @@ export const EditDrawer = (props) => {
                   setState({ ...state, style: { ...state.style, fontSize: e.target.value } });
                 }} />
             </FormRow>
-            {/* <FormRow>
-                <LabelTitle style={{ width: 60 }}>Language</LabelTitle>
-                <BasicSelect
-                    value={state?.language}
-                    options={['Javascript', 'C', 'Python']}
-                    onChange={(val) => {
-                      setState({ ...state, language: val });
-                    }}
-                />
-            </FormRow> */}
         </>
     }
     <FormRow>

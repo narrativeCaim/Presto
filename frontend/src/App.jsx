@@ -15,7 +15,6 @@ function App () {
           <Route index element={<Home />} />
           <Route path="presentation/:presentationId" element={<Presentation />} />
           <Route path="presentation/:presentationId/preview" element={<PresentationPreView />} />
-          {/* 这里可以添加更多需要在 Layout 中渲染的路由 */}
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

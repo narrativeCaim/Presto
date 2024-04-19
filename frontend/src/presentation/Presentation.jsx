@@ -216,14 +216,6 @@ function Presentation () {
         <SideBarWrapper>
           <div className='left'>
             <Button onClick={handleBack}>Back</Button>
-            {/* <Input
-              type='text'
-              placeholder='Title'
-              value={currentPre.name}
-              onChange={(e) => {
-                setCurrentPre({ ...currentPre, name: e.target.value })
-              }}
-            /> */}
             <StyledTitle>
               {currentPre.name}
               <Tooltip title="Edit Title">

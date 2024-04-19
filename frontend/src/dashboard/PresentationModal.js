@@ -1,34 +1,21 @@
 import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import styled from '@emotion/styled';
 import { Input, Button } from '@mui/material';
-
-export const ModalContent = styled.div``
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import { ModalBox, StyledInput } from './ui';
 
 function PresentationModal ({ isOpen, onClose, onCreate }) {
   const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleSubmit = () => {
     if (name.trim()) {
-      onCreate(name);
+      onCreate(name, description);
       setName('');
+      setDescription('');
       onClose();
     } else {
-      alert('please input a presentation name！');
+      alert('please input a presentation name');
     }
   };
 
@@ -36,25 +23,32 @@ function PresentationModal ({ isOpen, onClose, onCreate }) {
 
   console.log(handleSubmit);
 
-  return <Modal
+  return (
+    <Modal
       open={isOpen}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <ModalBox>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          create new presentation
+          Create New Presentation
         </Typography>
-          <ModalContent id="modal-modal-description">
-            <div style={{ margin: '8px 0' }}>
-              <Input placeholder="New presentation" value={name} onChange={(e) => setName(e.target.value)} />
-            </div>
-            <Button onClick={onClose}>Close</Button>
-            <Button onClick={handleSubmit}>Create</Button>
-          </ModalContent>
-      </Box>
-  </Modal>
+          <div>
+            <Input placeholder="New presentation name" value={name} onChange={(e) => setName(e.target.value)} />
+          </div>
+          <div>
+            <StyledInput
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <Button onClick={onClose}>Close</Button>
+          <Button onClick={handleSubmit}>Create</Button>
+      </ModalBox>
+    </Modal>
+  );
 }
 
 export default PresentationModal;

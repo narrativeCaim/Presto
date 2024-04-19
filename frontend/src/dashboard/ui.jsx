@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import Box from '@mui/material/Box';
+import { Input } from '@mui/material';
 
 export const Dashboard = styled.div`
   display: flex;
@@ -6,7 +8,37 @@ export const Dashboard = styled.div`
   gap: 20px;
   justify-content: center;
   padding: 20px;
+  overflow: auto;
+  min-height: 0; 
 `;
+
+export const ModalBox = styled(Box)({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 'auto',
+  maxWidth: '600px',
+  backgroundColor: 'white',
+  border: '1px solid #ddd',
+  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+  padding: 32,
+});
+
+export const StyledInput = styled(Input)({
+  '&::before': {
+    borderBottom: '1px solid rgba(0, 0, 0, 0.42)',
+  },
+  '&::after': {
+    borderBottom: '2px solid #304ffe',
+  },
+  '&.MuiInput-underline:hover:not(.Mui-disabled):before': {
+    borderBottom: '1px solid rgba(0, 0, 0, 0.87)',
+  },
+  input: {
+    padding: '10px 0'
+  }
+});
 
 export const PresentationCard = styled.div`
   border: 1px solid #ccc;
@@ -18,9 +50,8 @@ export const PresentationCard = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  overflow: hidden;
-  width: calc(100vw - 40px);
-  height: calc((100vw - 40px) / 2);
+  width: 100%;
+  height: auto;
   transition: box-shadow 0.3s, transform 0.3s;
 
   &:hover {
@@ -29,8 +60,13 @@ export const PresentationCard = styled.div`
   }
 
   @media (min-width: 600px) {
-    width: calc(50vw - 40px);
-    height: calc((50vw - 40px) / 2);
+    width: 48%;
+    height: auto;;
+  }
+
+  @media (min-width: 900px) {
+    width: 31%; 
+    height: auto;
   }
 `;
 

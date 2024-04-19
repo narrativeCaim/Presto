@@ -27,10 +27,11 @@ function Home () {
       });
   }, [])
 
-  const handleCreatePresentation = async (name) => {
+  const handleCreatePresentation = async (name, description) => {
     const newPresentation = {
       id: v4(),
       name,
+      description,
       ...commonConfig,
     };
     try {
@@ -52,6 +53,7 @@ function Home () {
       }
     } catch (error) {
       console.log(error);
+      window.alert('An error occurred while creating the presentation.');
     }
   };
 
@@ -73,7 +75,7 @@ function Home () {
       <PresentationModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        onCreate={handleCreatePresentation}
+        onCreate={(name, description) => handleCreatePresentation(name, description)}
       />
     </div>
   );

@@ -1,6 +1,11 @@
 
 import styled from '@emotion/styled';
 
+export const Content = styled.div`
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+`;
+
 export const LogoutButton = styled.button`
   position: fixed;
   bottom: 20px; 
