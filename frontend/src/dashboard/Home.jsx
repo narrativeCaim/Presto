@@ -3,7 +3,7 @@ import PresentationModal from './PresentationModal';
 import PresentationCard from './PresentationCard';
 import { commonConfig } from './contanst';
 import { v4 } from 'uuid';
-import { StyledButton, Dashboard } from './ui';
+import { StyledButton, ButtonContainer, Dashboard } from './ui';
 
 function Home () {
   const [modalOpen, setModalOpen] = useState(false);
@@ -57,7 +57,11 @@ function Home () {
 
   return (
     <div>
-      <StyledButton onClick={() => setModalOpen(true)}>New presentation</StyledButton>
+      <ButtonContainer>
+        <StyledButton onClick={() => setModalOpen(true)}>
+          New presentation
+        </StyledButton>
+      </ButtonContainer>
       <Dashboard>
         {presentations.map(p => (
           <PresentationCard

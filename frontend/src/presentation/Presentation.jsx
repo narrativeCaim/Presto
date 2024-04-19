@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ThumbnailTitle, DetailWrapper, SideBarWrapper } from './ui';
+import { ModalWrapper, StyledTitle, DetailWrapper, SideBarWrapper } from './ui';
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
+import Modal from '@mui/material/Modal';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 import { RevealDemo } from './reveal';
 import { textConfig, imageConfig, videoConfig, codeConfig, elementTypes } from '../dashboard/contanst';
 import AddIcon from '@mui/icons-material/Add';
@@ -20,6 +24,20 @@ function Presentation () {
   const [presentations, setPresentations] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [editEle, setEditEle] = useState(null);
+  const [tempTitle, setTempTitle] = useState(currentPre.name);
+  const [isTitleEditModalOpen, setTitleEditModalOpen] = useState(false);
+  const handleOpenTitleEditModal = () => setTitleEditModalOpen(true);
+  const handleCloseTitleEditModal = () => setTitleEditModalOpen(false);
+
+  const handleTitleChange = (newTitle) => {
+    setCurrentPre({ ...currentPre, name: newTitle });
+    handleCloseTitleEditModal();
+  };
+
+  const handleSaveTitle = () => {
+    handleTitleChange(tempTitle);
+    handleCloseTitleEditModal();
+  };
 
   const handleBack = () => {
     navigate('/dashboard');
@@ -177,19 +195,43 @@ function Presentation () {
 
   return (
     <DetailWrapper className='edit-wrapper'>
+
+      <Modal
+        open={isTitleEditModalOpen}
+        onClose={handleCloseTitleEditModal}
+      >
+        <ModalWrapper>
+          <Input
+            type='text'
+            value={tempTitle}
+            onChange={(e) => setTempTitle(e.target.value)}
+          />
+          <Button onClick={handleSaveTitle}>
+            Save
+          </Button>
+        </ModalWrapper>
+      </Modal>
+
       <div className='slide-bar-wrapper'>
         <SideBarWrapper>
           <div className='left'>
             <Button onClick={handleBack}>Back</Button>
-            <Input
+            {/* <Input
               type='text'
               placeholder='Title'
               value={currentPre.name}
               onChange={(e) => {
                 setCurrentPre({ ...currentPre, name: e.target.value })
               }}
-            />
-            <ThumbnailTitle>Thumbnail</ThumbnailTitle>
+            /> */}
+            <StyledTitle>
+              {currentPre.name}
+              <Tooltip title="Edit Title">
+                <IconButton onClick={handleOpenTitleEditModal} style={{ marginLeft: '8px' }}>
+                  <EditIcon />
+                </IconButton>
+              </Tooltip>
+            </StyledTitle>
             <Thumbnail currentPre={currentPre} setCurrentPre={setCurrentPre} />
           </div>
           <div className='left'>

@@ -46,7 +46,7 @@ export const CardTitle = styled.div`
 
 export const Thumbnail = styled.div`
   width: 80%;
-  height: 30%;
+  height: 150px;
   background-color: #ccc;
   display: flex;
   align-items: center;
@@ -54,12 +54,23 @@ export const Thumbnail = styled.div`
   color: white;
   font-size: 16px;
   overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const CardImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  padding: 20px; 
+  // background-color: #f8f9fa; 
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const StyledButton = styled.button`

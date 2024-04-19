@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Thumbnail as Wrapper } from './ui';
+import { ThumbnailContainer, ThumbnailImage, EmptyThumbnail } from './ui';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -32,32 +32,31 @@ export const Thumbnail = ({ currentPre, setCurrentPre }) => {
     setThumbnail(currentPre.thumbnail)
   }, [currentPre.thumbnail])
 
-  return <Wrapper onClick={handleClickOpen}>
-    {
-      currentPre.thumbnail
-        ? <img src={currentPre.thumbnail} alt='thumbnail img' />
-        : <div className='empty'></div>
-    }
-    <Dialog
+  return (
+    <ThumbnailContainer onClick={handleClickOpen}>
+      {thumbnail
+        ? (
+        <ThumbnailImage src={thumbnail} alt="Thumbnail" />
+          )
+        : (
+        <EmptyThumbnail>please input thumbnail url</EmptyThumbnail>
+          )}
+      <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        style={{ minWidth: 320 }}
       >
-        <DialogTitle id="alert-dialog-title" style={{ minWidth: 320 }}>
-            Thumbnail
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">Thumbnail</DialogTitle>
         <DialogContent>
           <DialogContentText>thumbnail url</DialogContentText>
-          <Input style={{ minWidth: 320 }} value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} />
+          <Input fullWidth value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleOk} autoFocus>
-            Confirm
-          </Button>
+          <Button onClick={handleOk} autoFocus>Confirm</Button>
         </DialogActions>
       </Dialog>
-  </Wrapper>
+    </ThumbnailContainer>
+  );
 }
