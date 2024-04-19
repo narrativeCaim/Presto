@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Dashboard = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* 为卡片之间提供间隔 */
+  gap: 20px;
   justify-content: center;
   padding: 20px;
 `;
@@ -53,7 +53,6 @@ export const Thumbnail = styled.div`
   justify-content: center;
   color: white;
   font-size: 16px;
-  overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
@@ -69,8 +68,6 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   align-items: center; 
   padding: 20px; 
-  // background-color: #f8f9fa; 
-  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const StyledButton = styled.button`

@@ -38,7 +38,7 @@ export const ELeContainer = (props) => {
   };
 
   const { children, style = {}, onDoubleClick, zIndex, deleteEle } = props;
-  return <ELeWrapper onContextMenu={handleClick} className='sl-block' onDoubleClick={onDoubleClick} style={{ width: `${style.width || 100}%`, height: `${style.height || 30}%`, top: `${style.y}px`, left: `${style.x}px`, fontSize: `${style.fontSize || 1}em`, color: style.color, zIndex }}>
+  return <ELeWrapper onContextMenu={handleClick} className='sl-block' onDoubleClick={onDoubleClick} style={{ width: `${style.width || 100}%`, height: `${style.height || 30}%`, top: `${style.y}%`, left: `${style.x}%`, fontSize: `${style.fontSize || 1}em`, color: style.color, zIndex }}>
             {children}
             <Menu
               keepMounted
@@ -105,34 +105,41 @@ export const RevealDemo = (props) => {
             return (<section key={slide.id} data-background-color={slibgColor || bgColor || undefined} data-background-gradient={getGradientColor(sliblgColor) || getGradientColor(blgColor) || undefined}>
               {
                 slide.elements.map((element, idx) => {
-                  return <>
-                    <ELeContainer
-                      key={element.id}
-                      onDoubleClick={() => {
-                        setEditEle({ type: element.type, element })
-                      }}
-                      style={element.style}
-                      zIndex={idx}
-                      deleteEle={() => {
-                        deleteElements(curSlides.id, element.id)
-                      }}
-                    >
+                  return (
+                    <React.Fragment key={element.id}>
+                      <ELeContainer
+                        onDoubleClick={() => {
+                          setEditEle({ type: element.type, element })
+                        }}
+                        style={element.style}
+                        zIndex={idx}
+                        deleteEle={() => {
+                          deleteElements(curSlides.id, element.id)
+                        }}
+                      >
                         {
                           element.type === elementTypes.Text
                             ? <div className='custom-text' style={{ justifyContent: element.style?.textAlign, fontFamily: element.style?.fontFamily }}>{element.content}</div>
                             : element.type === elementTypes.Image
                               ? <img src={element.content} alt={element.alt || 'picture'} />
                               : element.type === elementTypes.Video
-                                ? <video controls src={element.content} autoPlay={element.autoPlay} />
+                                ? <iframe
+                                    width="560"
+                                    height="315"
+                                    src={element.content}
+                                    title="YouTube video player"
+                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                  ></iframe>
                                 : element.type === elementTypes.Code
                                   ? <pre>
                                       <code data-trim data-noescape>{element.content}</code>
                                     </pre>
-                                  : <div key={element.id}>{it.content}</div>
+                                  : <div key={element.id}>{element.content}</div>
                         }
-
-                    </ELeContainer>
-                  </>
+                      </ELeContainer>
+                    </React.Fragment>
+                  );
                 })
               }
             </section>)
